@@ -29,9 +29,9 @@ Route::controller(HomeController::class)->group(function () {
 });
 
 // Cart routes (session-based)
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
-Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.cart');
+Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 
 // Checkout & Orders (protected)
 Route::middleware('auth')->group(function () {

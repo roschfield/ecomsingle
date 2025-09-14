@@ -37,18 +37,19 @@ Product Details-Ecomwave
 
             <!-- Quantity & Add to Cart -->
             @if($product->in_stock && $product->stock_quantity > 0)
-                <form action="" method="POST" class="mt-4">
-                    @csrf
-                    <label for="quantity" class="block mb-2 font-medium">Quantity</label>
-                    <input type="number" name="quantity" id="quantity" 
-                           value="1" min="1" max="{{ $product->stock_quantity }}"
-                           class="w-24 border border-gray-300 rounded px-2 py-1">
-                    
-                    <button type="submit" 
-                            class="ml-3 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
-                        Add to Cart
-                    </button>
+                <form action="{{ route('cart.add', $product->id) }}" method="POST" class="mt-4">
+                        @csrf
+                        <label for="quantity" class="block mb-2 font-medium">Quantity</label>
+                        <input type="number" name="quantity" id="quantity" 
+                            value="1" min="1" max="{{ $product->stock_quantity }}"
+                            class="w-24 border border-gray-300 rounded px-2 py-1">
+                        
+                        <button type="submit" 
+                                class="ml-3 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                            Add to Cart
+                        </button>
                 </form>
+
             @endif
         </div>
     </div>
