@@ -63,22 +63,60 @@
             </div>
           </div>
         </div>
-        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-          <div class="hidden sm:flex sm:items-center">
-            <a href="#" class="block rounded-sm bg-gray-100 px-4 py-3 text-sm font-medium text-gray-900 transition hover:scale-105">Login</a>
-            <a href="#" class="ml-4 block min-w-3xl rounded-sm bg-gray-900 px-4 py-3 text-sm font-medium text-white transition hover:scale-105">Sign Up</a>
-          </div>
+         <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <!-- Right side (Cart + Auth) -->
+              <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 space-x-4">
 
-          <!-- Mobile menu button -->
-          <div class="sm:hidden">
+                <!-- Cart Icon -->
+                <a href="{{ route('cart.cart') }}" class="relative flex items-center text-gray-700 hover:text-gray-900">
+                  <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9m13-9l2 9m-5-9V6a2 2 0 10-4 0v7" />
+                  </svg>
+                  @php $cartCount = count(session('cart', [])); @endphp
+                  @if($cartCount > 0)
+                    <span class="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full px-1">
+                      {{ $cartCount }}
+                    </span>
+                  @endif
+                </a>
+
+                <!-- Auth Links -->
+                @auth
+                  <!-- User Dropdown -->
+                  <div class="relative group">
+                    <button class="flex items-center space-x-2 text-gray-700 hover:text-gray-900">
+                      <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M5.121 17.804A8 8 0 1118.879 6.196a8 8 0 01-13.758 11.608z" />
+                      </svg>
+                      <span>{{ Auth::user()->name }}</span>
+                    </button>
+                    <div class="absolute right-0 mt-2 w-40 bg-white border rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                      <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                      <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</button>
+                      </form>
+                    </div>
+                  </div>
+                @else
+                  <!-- Guest -->
+                  <a href="{{ route('login') }}" class="block rounded-sm bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900 transition hover:scale-105">Login</a>
+                  <a href="{{ route('register') }}" class="ml-2 block rounded-sm bg-gray-900 px-4 py-2 text-sm font-medium text-white transition hover:scale-105">Sign Up</a>
+                @endauth
+              </div>
+
+             <!-- Mobile menu button -->
+            <div class="sm:hidden">
             <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-expanded="false" id="mobile-menu-button">
                             <span class="sr-only">Open main menu</span>
                             <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
-          </button>
-          </div>
-        </div>
+           </button>
+            </div>
+         </div>
       </div>
     </div>
 
