@@ -18,7 +18,7 @@
       <div class="relative flex items-center justify-between h-16">
         <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
           <div class="flex-shrink-0 flex items-center">
-            <img class="block h-8 w-auto" src="https://tailwindflex.com/images/logo.svg" alt="Logo">
+            <img class="block h-8 w-auto" src="{{ asset('storage/images/logo.svg') }}" alt="Logo">
             <span class="ml-2 text-xl font-bold text-gray-800">Ecomwave</span>
           </div>
           <div class="hidden sm:block sm:ml-6">
@@ -201,16 +201,15 @@
     </form>
   </div>
 </section>
+
 <!-- Footer -->
-<footer class="bg-gray-900 text-white pt-12 pb-8">
+<footer class="bg-black text-white pt-12 pb-8">
   <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
       <!-- Company Info -->
       <div class="space-y-4">
         <div class="flex items-center">
-          <svg class="h-8 w-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-          </svg>
+          <img class="block h-8 w-auto" src="{{ asset('storage/images/logo.svg') }}" alt="Logo">
           <span class="ml-2 text-xl font-bold">Ecomwave</span>
         </div>
         <p class="text-gray-300">Quality products, delivered with care.</p>
@@ -221,9 +220,9 @@
       <div class="space-y-4">
         <h3 class="text-lg font-semibold">Quick Links</h3>
         <ul class="space-y-2">
-          <li><a href="#" class="text-gray-300 hover:text-white transition">Home</a></li>
-          <li><a href="#" class="text-gray-300 hover:text-white transition">About Us</a></li>
-          <li><a href="#" class="text-gray-300 hover:text-white transition">FAQ</a></li>
+          <li><a href="{{ route('home') }}" class="text-gray-300 hover:text-white transition">Home</a></li>
+          <li><a href="{{ route('about') }}" class="text-gray-300 hover:text-white transition">About Us</a></li>
+          <li><a href="{{ route('contact') }}" class="text-gray-300 hover:text-white transition">Contact</a></li>
          
         </ul>
       </div>
@@ -276,6 +275,7 @@
     </div>
   </div>
 </footer>
+
 
 
 
