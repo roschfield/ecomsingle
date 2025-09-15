@@ -176,7 +176,31 @@
         @yield('content')
   </div>
 
+<!-- Newsletter Section-->
+<section class="w-full bg-gradient-to-r from-[#00766e] via-green-800 to-[#00766e] py-16 px-4">
+  <div class="max-w-[1200px] mx-auto text-center">
+    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+      Subscribe to our Newsletter
+    </h2>
+    <p class="text-green-200 mb-8 max-w-2xl mx-auto">
+      Get the latest updates, articles, and resources straight to your inbox.
+    </p>
 
+    <form class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-2xl mx-auto">
+      <input 
+        type="email" 
+        placeholder="Enter your email" 
+        class="w-full sm:flex-1 px-4 py-3  border  focus:outline-none focus:ring-2 focus:ring-green-400"
+      >
+      <button 
+        type="submit" 
+        class="px-6 py-3 bg-black  text-white font-medium  transition-colors duration-200 w-full sm:w-auto"
+      >
+        Subscribe
+      </button>
+    </form>
+  </div>
+</section>
 <!-- Footer -->
 <footer class="bg-gray-900 text-white pt-12 pb-8">
   <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">

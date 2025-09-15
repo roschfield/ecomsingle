@@ -55,4 +55,13 @@
         <p>Your cart is empty.</p>
     @endif
 </div>
+
+@if(!empty($cart))
+    <div class="flex justify-end mt-6">
+        <a href="{{ route('checkout.checkout') }}" 
+           class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
+            Proceed to Checkout
+        </a>
+    </div>
+@endif
 @endsection

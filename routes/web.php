@@ -35,11 +35,11 @@ Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.r
 
 // Checkout & Orders (protected)
 Route::middleware('auth')->group(function () {
-    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.checkout');
     Route::post('/checkout/place-order', [CheckoutController::class, 'store'])->name('checkout.store');
 
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-    Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
+    Route::get('/order/{id}', [OrderController::class, 'show'])->name('order.show');
 });
 
 require __DIR__ . '/auth.php';
