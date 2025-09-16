@@ -25,7 +25,7 @@
                     <td class="border px-4 py-2">${{ number_format($order->grand_total, 2) }}</td>
                     <td class="border px-4 py-2">{{ $order->created_at->format('d M Y') }}</td>
                     <td class="border px-4 py-2">
-                        <a href="{{ route('orders.show', $order->id) }}" 
+                        <a href="{{ route('order.show', $order->id) }}" 
                            class="text-blue-600 hover:underline">View</a>
                     </td>
                 </tr>
