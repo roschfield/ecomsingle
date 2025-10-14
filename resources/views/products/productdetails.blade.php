@@ -4,7 +4,8 @@ Product Details-Ecomwave
 @endsection
 @section('content')
 <div class="container mx-auto py-10">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 sm:px-2 md:px-0">
+       
         <!-- Product Image -->
         <div>
             <img src="{{ asset('storage/' . $product->image) }}" 
@@ -45,9 +46,23 @@ Product Details-Ecomwave
                             class="w-24 border border-gray-300 rounded px-2 py-1">
                         
                         <button type="submit" 
-                                class="ml-3 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                                class="ml-3 bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition">
                             Add to Cart
                         </button>
+                          @if (session('success'))
+                            <div class="my-6 p-4 text-green-800 bg-green-100 border border-green-200 rounded">
+                                {{ session('success') }}
+                            </div>
+                         @endif
+                         @if ($errors->any())
+                            <div class="my-6 p-4 text-red-800 bg-red-100 border border-red-200 rounded">
+                                <ul class="list-disc pl-5">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                                </ul>
+                            </div>
+                         @endif
                 </form>
 
             @endif
@@ -56,9 +71,9 @@ Product Details-Ecomwave
 
     <!--Related Products -->
     @if($relatedProducts->isNotEmpty())
-        <div class="mt-12">
+        <div class="mt-12 px-4 sm:px-2 md:px-0">
             <h2 class="text-2xl font-bold mb-6">Related Products</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4  gap-3 md:gap-6">
                 @foreach($relatedProducts as $related)
                     <x-product-card :product="$related" />
                 @endforeach

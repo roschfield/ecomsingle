@@ -53,7 +53,7 @@ class ProductForm
                         TextInput::make('price')
                          ->required()
                          ->numeric()
-                         ->prefix('BDT'),
+                         ->prefix('USD'),
                      ]),
                      Section::make('Price')->schema([
                         Select::make('category_id')
@@ -80,7 +80,6 @@ class ProductForm
                             ->numeric()
                             ->default(0)
                             ->minValue(0)
-                            ->required(),
                      ])
                 ])->columnSpan(1),
             ])->columns(3);

@@ -18,13 +18,13 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUserCircle;
 
     protected static ?string $recordTitleAttribute = 'User';
 
     public static function form(Schema $schema): Schema
     {
-        return UserForm::configure($schema);
+        return $schema;
     }
 
     public static function table(Table $table): Table
@@ -43,8 +43,10 @@ class UserResource extends Resource
     {
         return [
             'index' => ListUsers::route('/'),
-            'create' => CreateUser::route('/create'),
-            'edit' => EditUser::route('/{record}/edit'),
+           
         ];
     }
+    public static function canCreate(): bool { return false; }
+    public static function canEdit($record): bool { return false; }
+    public static function canDelete($record): bool { return false; }
 }

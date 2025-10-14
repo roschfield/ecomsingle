@@ -18,7 +18,7 @@
       <div class="relative flex items-center justify-between h-16">
         <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
           <div class="flex-shrink-0 flex items-center">
-            <img class="block h-8 w-auto" src="https://tailwindflex.com/images/logo.svg" alt="Logo">
+            <img class="block h-8 w-auto" src="{{ asset('storage/images/logo.svg') }}" alt="Logo">
             <span class="ml-2 text-xl font-bold text-gray-800">Ecomwave</span>
           </div>
           <div class="hidden sm:block sm:ml-6">
@@ -69,10 +69,10 @@
 
                 <!-- Cart Icon -->
                 <a href="{{ route('cart.cart') }}" class="relative flex items-center text-gray-700 hover:text-gray-900">
-                  <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9m13-9l2 9m-5-9V6a2 2 0 10-4 0v7" />
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                   </svg>
+
                   @php $cartCount = count(session('cart', [])); @endphp
                   @if($cartCount > 0)
                     <span class="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full px-1">
@@ -85,15 +85,15 @@
                 @auth
                   <!-- User Dropdown -->
                   <div class="relative group">
-                    <button class="flex items-center space-x-2 text-gray-700 hover:text-gray-900">
-                      <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M5.121 17.804A8 8 0 1118.879 6.196a8 8 0 01-13.758 11.608z" />
+                    <button class="flex items-center space-x-1 text-gray-700 hover:text-gray-900">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                       </svg>
+
                       <span>{{ Auth::user()->name }}</span>
                     </button>
                     <div class="absolute right-0 mt-2 w-40 bg-white border rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-                      <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                      <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
                       <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</button>
@@ -102,8 +102,8 @@
                   </div>
                 @else
                   <!-- Guest -->
-                  <a href="{{ route('login') }}" class="block rounded-sm bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900 transition hover:scale-105">Login</a>
-                  <a href="{{ route('register') }}" class="ml-2 block rounded-sm bg-gray-900 px-4 py-2 text-sm font-medium text-white transition hover:scale-105">Sign Up</a>
+                  <a href="{{ route('login') }}" class="block bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900 transition hover:scale-105 rounded-md">Login</a>
+                  <a href="{{ route('register') }}" class="ml-2 block rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white transition hover:scale-105">Sign Up</a>
                 @endauth
               </div>
 
@@ -172,21 +172,57 @@
   </nav>
 
   <!-- Page content -->
-  <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8 bg-slate-200">
         @yield('content')
   </div>
 
+<!-- Newsletter Section-->
+<section class="w-full bg-gradient-to-r from-[#00766e] via-green-800 to-[#00766e] py-16 px-4">
+  <div class="max-w-[1200px] mx-auto text-center">
+    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+      Subscribe to our Newsletter
+    </h2>
+    <p class="text-green-200 mb-8 max-w-2xl mx-auto">
+      Get the latest updates, articles, and resources straight to your inbox.
+    </p>
+
+    <form
+       action="{{ route('newsletter.store') }}" 
+       method="POST"
+      class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-2xl mx-auto">
+      @csrf
+    <input 
+      type="email" 
+      name="email" 
+      placeholder="Enter your email" 
+      class="w-full sm:flex-1 px-4 py-3 border focus:outline-none focus:ring-2 focus:ring-green-400"
+      required
+    >
+      <button 
+        type="submit" 
+        class="px-6 py-3 bg-black  text-white font-medium rounded-md  transition-colors duration-200 w-full sm:w-auto"
+      >
+        Subscribe
+      </button>
+    </form>
+    @if (session('success'))
+      <p class="text-green-200 mt-4">{{ session('success') }}</p>
+    @endif
+
+    @if ($errors->any())
+      <p class="text-red-200 mt-4">{{ $errors->first('email') }}</p>
+    @endif
+  </div>
+</section>
 
 <!-- Footer -->
-<footer class="bg-gray-900 text-white pt-12 pb-8">
+<footer class="bg-black text-white pt-12 pb-8">
   <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
       <!-- Company Info -->
       <div class="space-y-4">
         <div class="flex items-center">
-          <svg class="h-8 w-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-          </svg>
+          <img class="block h-8 w-auto" src="{{ asset('storage/images/logo.svg') }}" alt="Logo">
           <span class="ml-2 text-xl font-bold">Ecomwave</span>
         </div>
         <p class="text-gray-300">Quality products, delivered with care.</p>
@@ -197,9 +233,9 @@
       <div class="space-y-4">
         <h3 class="text-lg font-semibold">Quick Links</h3>
         <ul class="space-y-2">
-          <li><a href="#" class="text-gray-300 hover:text-white transition">Home</a></li>
-          <li><a href="#" class="text-gray-300 hover:text-white transition">About Us</a></li>
-          <li><a href="#" class="text-gray-300 hover:text-white transition">FAQ</a></li>
+          <li><a href="{{ route('home') }}" class="text-gray-300 hover:text-white transition">Home</a></li>
+          <li><a href="{{ route('about') }}" class="text-gray-300 hover:text-white transition">About Us</a></li>
+          <li><a href="{{ route('contact') }}" class="text-gray-300 hover:text-white transition">Contact</a></li>
          
         </ul>
       </div>
@@ -252,6 +288,7 @@
     </div>
   </div>
 </footer>
+
 
 
 
