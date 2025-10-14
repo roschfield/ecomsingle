@@ -2,7 +2,20 @@
 
 @section('content')
 <div class="max-w-4xl mx-auto p-6">
-    <h1 class="text-2xl font-bold mb-4">Order #{{ $order->id }}</h1>
+     @if (session('success'))
+        <div class="my-6 p-4 text-green-800 bg-green-100 border border-green-200 rounded">
+         {{ session('success') }}
+        </div>
+    @endif
+    @if ($errors->any())
+        <div class="my-6 p-4 text-red-800 bg-red-100 border border-red-200 rounded">
+             <ul class="list-disc pl-5">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <div class="mb-6">
         <h2 class="text-xl font-semibold mb-2">Shipping Address</h2>

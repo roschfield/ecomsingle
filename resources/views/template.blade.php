@@ -93,7 +93,7 @@
                       <span>{{ Auth::user()->name }}</span>
                     </button>
                     <div class="absolute right-0 mt-2 w-40 bg-white border rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-                      <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                      <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
                       <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</button>
@@ -102,8 +102,8 @@
                   </div>
                 @else
                   <!-- Guest -->
-                  <a href="{{ route('login') }}" class="block rounded-sm bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900 transition hover:scale-105">Login</a>
-                  <a href="{{ route('register') }}" class="ml-2 block rounded-sm bg-gray-900 px-4 py-2 text-sm font-medium text-white transition hover:scale-105">Sign Up</a>
+                  <a href="{{ route('login') }}" class="block bg-gray-100 px-4 py-2 text-sm font-medium text-gray-900 transition hover:scale-105 rounded-md">Login</a>
+                  <a href="{{ route('register') }}" class="ml-2 block rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white transition hover:scale-105">Sign Up</a>
                 @endauth
               </div>
 
@@ -172,7 +172,7 @@
   </nav>
 
   <!-- Page content -->
-  <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8 bg-slate-200">
         @yield('content')
   </div>
 
@@ -186,19 +186,32 @@
       Get the latest updates, articles, and resources straight to your inbox.
     </p>
 
-    <form class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-2xl mx-auto">
-      <input 
-        type="email" 
-        placeholder="Enter your email" 
-        class="w-full sm:flex-1 px-4 py-3  border  focus:outline-none focus:ring-2 focus:ring-green-400"
-      >
+    <form
+       action="{{ route('newsletter.store') }}" 
+       method="POST"
+      class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-2xl mx-auto">
+      @csrf
+    <input 
+      type="email" 
+      name="email" 
+      placeholder="Enter your email" 
+      class="w-full sm:flex-1 px-4 py-3 border focus:outline-none focus:ring-2 focus:ring-green-400"
+      required
+    >
       <button 
         type="submit" 
-        class="px-6 py-3 bg-black  text-white font-medium  transition-colors duration-200 w-full sm:w-auto"
+        class="px-6 py-3 bg-black  text-white font-medium rounded-md  transition-colors duration-200 w-full sm:w-auto"
       >
         Subscribe
       </button>
     </form>
+    @if (session('success'))
+      <p class="text-green-200 mt-4">{{ session('success') }}</p>
+    @endif
+
+    @if ($errors->any())
+      <p class="text-red-200 mt-4">{{ $errors->first('email') }}</p>
+    @endif
   </div>
 </section>
 
