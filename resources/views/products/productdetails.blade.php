@@ -17,7 +17,7 @@ Product Details-Ecomwave
         <div>
             <h1 class="text-3xl font-bold mb-4">{{ $product->name }}</h1>
             <p class="text-gray-700 mb-4">{{ $product->description }}</p>
-            <p class="text-xl font-semibold mb-4">BDT {{ $product->price }}</p>
+            <p class="text-xl font-semibold mb-4">USD {{ $product->price }}</p>
 
             <p class="mb-4">Category: 
                 <a href="{{ route('category', [$product->category->id, $product->category->slug]) }}" 

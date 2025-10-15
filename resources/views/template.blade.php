@@ -63,7 +63,7 @@
             </div>
           </div>
         </div>
-         <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+         <div class="hidden absolute inset-y-0 right-0 sm:flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <!-- Right side (Cart + Auth) -->
               <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 space-x-4">
 
@@ -124,7 +124,6 @@
     <div class="sm:hidden hidden" id="mobile-menu">
       <div class="flex flex-col px-2 pt-2 pb-3 space-y-1">
         <a href="#" class="hover:bg-gray-100 text-gray-900 block px-3 py-2 rounded-md text-base font-medium">Home</a>
-
         <!-- Mobile Products Dropdown -->
         <div class="relative">
           <button class="w-full text-left text-gray-900 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium flex items-center justify-between mobile-dropdown-trigger">
@@ -150,7 +149,6 @@
            
           </div>
         </div>
-
         <a href="{{ route('shop') }}" class="text-gray-900 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Shop</a>
         <a href="{{ route('about') }}" class="text-gray-900 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">About</a>
         <a href="{{ route('contact') }}" class="text-gray-900 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Contact</a>
